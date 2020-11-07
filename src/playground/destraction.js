@@ -11,7 +11,14 @@ const decrementCount = ({decrementBy=3}={}) => ({
     decrementBy
 
 })
-
+const resetCount = ({count=0}={}) => ({
+    type: 'RESET',
+    count
+})
+const setCount = ({count=100}={}) => ({
+    type: 'RESET',
+    count
+})
 const store= createStore((state={count:0}, action)=> {
 switch (action.type) {
     case 'INCREMENT':
@@ -25,11 +32,11 @@ switch (action.type) {
         })
     case 'RESET':
         return({
-            count: 0
+            count: action.count
         })
     case 'SET':
         return({
-            count:100
+            count: action.count
         })
     default:
         break;
@@ -42,3 +49,5 @@ store.subscribe(()=>{
 })
 store.dispatch(incrementCount())
 store.dispatch(decrementCount());
+store.dispatch(resetCount());
+store.dispatch(setCount())
